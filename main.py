@@ -22,6 +22,8 @@ def main():
     kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr)
     plt.title("Kurva Bezier")
     plot_kurva(arr)
+    plot_kontrol(titik[0], titik[1], titik[2])
+    plt.show()
 
 if __name__ == "__main__":
     main()
