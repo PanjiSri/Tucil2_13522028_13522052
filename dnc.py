@@ -25,79 +25,87 @@ def expandarray(array1, array2) :
         array1.append(array2[i])
     return array1
 
-titikawal = []
-titikakhir = []
-titikbantu = []
-titikbezier = []
-xawal = []
-yawal = []
+def Ngaris_dan_Bforce(algo):
+    titikawal = []
+    titikakhir = []
+    titikbantu = []
+    titikbezier = []
+    xawal = []
+    yawal = []
 
-n = int(input("Masukkan banyak garis: "))
-algo = int(input("Masukkan algoritma: "))
+    n = int(input("Masukkan banyak garis: "))
 
-for i in range(n+1) :
-    titik = []
-    if i == 0 :
-        titik.append(float(input()))
-        titik.append(float(input()))
-        titikawal.append(titik)
-        titikbantu.append(titik)
-    elif i == n :
-        titik.append(float(input()))
-        titik.append(float(input()))
-        titikakhir.append(titik)
-        titikbantu.append(titik)
-    else :
-        titik.append(float(input()))
-        titik.append(float(input()))
-        titikbantu.append(titik)
+    for i in range(n+1) :
+        titik = []
+        if i == 0 :
+            titik.append(float(input()))
+            titik.append(float(input()))
+            titikawal.append(titik)
+            titikbantu.append(titik)
+        elif i == n :
+            titik.append(float(input()))
+            titik.append(float(input()))
+            titikakhir.append(titik)
+            titikbantu.append(titik)
+        else :
+            titik.append(float(input()))
+            titik.append(float(input()))
+            titikbantu.append(titik)
 
-if algo == 1 :
-    x = []
-    x.append(titikawal[0][0])
-    y = []
-    y.append(titikawal[0][1])
-    iterasi = int(input("Masukkan iterasi: "))
-    t = 1/iterasi
-    while t < 1 :
-        titik = bruteforce.bexierbruteforce(titikbantu, t)
-        x.append(titik[0])
-        y.append(titik[1])
-        t += 1/iterasi
+    if algo == '3' :
+        x = []
+        x.append(titikawal[0][0])
+        y = []
+        y.append(titikawal[0][1])
+        iterasi = int(input("Masukkan iterasi: "))
+        t = 1/iterasi
+        while t < 1 :
+            titik = bruteforce.bexierbruteforce(titikbantu, t)
+            x.append(titik[0])
+            y.append(titik[1])
+            t += 1/iterasi
+        
+        plt.plot(xawal,yawal)
+        plt.clf()
+        plt.plot(x,y)
+        plt.scatter(x,y)
+        plt.show()
 
-if algo == 2:
-    iterasi = int(input("Masukkan iterasi: "))
-    for i in range(iterasi) :
-        titikdipakai = 0
-        titikbantutemp = titikbantu
-        titikbantu = []
-        while (titikdipakai < len(titikbantutemp)-1) :
-            temp = []
-            awal = titikdipakai
-            titikdipakai += n
-            # print(titikbantutemp[awal:titikdipakai+1])
-            kumpulantitik = slicing(titikbantutemp,awal,titikdipakai+1)
-            kumpulantitik = list_midpoint(kumpulantitik)
-            ulang = 0
-            while len(kumpulantitik) > 1 :
-                temp.insert(ulang,kumpulantitik[0])
-                temp.insert(len(temp)-ulang,kumpulantitik[len(kumpulantitik)-1])
-                ulang += 1
+    if algo == '2':
+        iterasi = int(input("Masukkan iterasi: "))
+        for i in range(iterasi) :
+            titikdipakai = 0
+            titikbantutemp = titikbantu
+            titikbantu = []
+            while (titikdipakai < len(titikbantutemp)-1) :
+                temp = []
+                awal = titikdipakai
+                titikdipakai += n
+                # print(titikbantutemp[awal:titikdipakai+1])
+                kumpulantitik = slicing(titikbantutemp,awal,titikdipakai+1)
                 kumpulantitik = list_midpoint(kumpulantitik)
-            temp.insert(ulang,kumpulantitik[0])
-            temp.append(titikbantutemp[titikdipakai])
-            titikbantu = expandarray(titikbantu,temp)
-        titikbantu.insert(0,titikawal[0])
+                ulang = 0
+                while len(kumpulantitik) > 1 :
+                    temp.insert(ulang,kumpulantitik[0])
+                    temp.insert(len(temp)-ulang,kumpulantitik[len(kumpulantitik)-1])
+                    ulang += 1
+                    kumpulantitik = list_midpoint(kumpulantitik)
+                temp.insert(ulang,kumpulantitik[0])
+                temp.append(titikbantutemp[titikdipakai])
+                titikbantu = expandarray(titikbantu,temp)
+            titikbantu.insert(0,titikawal[0])
 
-    for i in range(0,len(titikbantu),n) :
-        titikbezier.append(titikbantu[i])
+        for i in range(0,len(titikbantu),n) :
+            titikbezier.append(titikbantu[i])
 
-    x = []
-    y = []
-    for i in range(len(titikbezier)) :
-        x.append(titikbezier[i][0])
-        y.append(titikbezier[i][1])
-
-plt.plot(xawal,yawal)
-plt.plot(x,y)
-plt.show()
+        x = []
+        y = []
+        for i in range(len(titikbezier)) :
+            x.append(titikbezier[i][0])
+            y.append(titikbezier[i][1])
+        
+        plt.plot(xawal,yawal)
+        plt.clf()
+        plt.plot(x,y)
+        plt.scatter(x,y)
+        plt.show()

@@ -55,10 +55,10 @@ def plot_kurva(arr):
     # print(titik_x)
     # print(titik_y)
     
-    plt.plot(titik_x, titik_y, linestyle="-", marker = 'o')
+    plt.plot(titik_x, titik_y, linestyle="-", marker = 'o', label = 'kurva bezier')
 
 def plot_kontrol(titik_awal, titik_tengah, titik_akhir):
     x_kontrol = [titik_awal[0], titik_tengah[0], titik_akhir[0]]
     y_kontrol = [titik_awal[1], titik_tengah[1], titik_akhir[1]]
         
-    plt.plot(x_kontrol, y_kontrol, linestyle="-", marker = 'o')
+    plt.plot(x_kontrol, y_kontrol, linestyle="-", marker = 'o', label = 'titik kontrol')
