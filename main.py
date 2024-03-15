@@ -1,6 +1,5 @@
 from divide_and_conquer import *
 
-
 def input_titik():
     titik = []
     for i in range(3):
