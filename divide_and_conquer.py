@@ -54,7 +54,7 @@ def plot_kurva(arr):
 
     # print(titik_x)
     # print(titik_y)
-    plt.plot(titik_x, titik_y, linestyle="-")
+    plt.plot(titik_x, titik_y, linestyle="-", marker = 'o')
     plt.show()
 
 
