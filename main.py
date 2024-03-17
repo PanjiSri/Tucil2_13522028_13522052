@@ -51,7 +51,7 @@ def main():
         plt.show()
 
     elif algo == '2' or algo == '3':
-        Ngaris_BForce(algo);
+        Ngaris_BForce(algo)
 
 
 
