@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import time
 
 def titik_tengah(titik_awal, titik_akhir):
     hasil = []
