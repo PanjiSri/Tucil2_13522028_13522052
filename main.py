@@ -1,5 +1,6 @@
 from divide_and_conquer import *
 from dnc import *
+import time
 
 def input_titik():
     titik = []
@@ -43,11 +44,10 @@ def main():
         titik = input_titik()
         iterasi = int(input("Masukkan jumlah iterasi: "))   
         arr = []
-        kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr)
-        plt.title("Kurva Bezier")
-        plot_kurva(arr)
-        plot_kontrol(titik[0], titik[1], titik[2])
-        plt.legend()
+        mulai = time.time()
+        kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr, titik[0], titik[1], titik[2])
+        selesai = time.time()
+        print("Waktu program berjalan: {:.2f} seconds".format(selesai-mulai))
         plt.show()
 
     elif algo == '2' or algo == '3':

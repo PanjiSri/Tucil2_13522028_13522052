@@ -1,21 +1,16 @@
 import matplotlib.pyplot as plt
-
+import time
 
 def titik_tengah(titik_awal, titik_akhir):
-
     hasil = []
     x_tengah = (titik_awal[0] + titik_akhir[0]) / 2
     y_tengah = (titik_awal[1] + titik_akhir[1]) / 2
     hasil.append(x_tengah)
     hasil.append(y_tengah)
-
     return hasil
 
-
-def kurva_bezier(titik_1, titik_2, titik_3, iterasi, arr):
-
+def kurva_bezier(titik_1, titik_2, titik_3, iterasi, arr, kontrol1, kontrol2, kontrol3):
     if iterasi == 1:
-        
         tengah_1 = titik_tengah(titik_1, titik_2)
         tengah_2 = titik_tengah(titik_2, titik_3)
         tengah_dari_tengah = titik_tengah(tengah_1, tengah_2)
@@ -32,18 +27,19 @@ def kurva_bezier(titik_1, titik_2, titik_3, iterasi, arr):
                 arr.append(titik_1)
                 arr.append(tengah_dari_tengah)
                 arr.append(titik_3)
+        plt.clf()
+        plot_kontrol(kontrol1, kontrol2, kontrol3)
+        plot_kurva(arr)   
     else:
         tengah_1 = titik_tengah(titik_1, titik_2)
         tengah_2 = titik_tengah(titik_2, titik_3)
         tengah_dari_tengah = titik_tengah(tengah_1,tengah_2)
 
         #ini buat bagian kiri
-        kurva_bezier(titik_1, tengah_1, tengah_dari_tengah, iterasi-1, arr)
+        kurva_bezier(titik_1, tengah_1, tengah_dari_tengah, iterasi-1, arr, kontrol1, kontrol2, kontrol3)
 
         #ini buat bagian kanan
-        kurva_bezier(tengah_dari_tengah,tengah_2, titik_3, iterasi-1, arr)
-
-
+        kurva_bezier(tengah_dari_tengah,tengah_2, titik_3, iterasi-1, arr, kontrol1, kontrol2, kontrol3)
 
 def plot_kurva(arr):
     titik_x = []
@@ -51,14 +47,12 @@ def plot_kurva(arr):
     for elemen in arr:
         titik_x.append(elemen[0])
         titik_y.append(elemen[1])
-
-    # print(titik_x)
-    # print(titik_y)
-    
-    plt.plot(titik_x, titik_y, linestyle="-", marker = 'o', label = 'kurva bezier')
+    plt.title("Kurva Bezier")
+    plt.plot(titik_x, titik_y, marker = 'o', label = 'kurva bezier')
+    plt.legend()
+    plt.pause(0.5)
 
 def plot_kontrol(titik_awal, titik_tengah, titik_akhir):
     x_kontrol = [titik_awal[0], titik_tengah[0], titik_akhir[0]]
-    y_kontrol = [titik_awal[1], titik_tengah[1], titik_akhir[1]]
-        
+    y_kontrol = [titik_awal[1], titik_tengah[1], titik_akhir[1]]        
     plt.plot(x_kontrol, y_kontrol, linestyle="-", marker = 'o', label = 'titik kontrol')

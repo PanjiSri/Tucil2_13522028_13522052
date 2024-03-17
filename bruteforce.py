@@ -1,4 +1,5 @@
 import math
+
 def combination (leftnum, rightnum) :
     return round(math.factorial(leftnum) / (math.factorial(rightnum) * math.factorial(leftnum-rightnum)))
 

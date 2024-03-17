@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import bruteforce
+import time
 
 def midpoint(x1,y1,x2,y2) :
     koordinat = []
@@ -27,10 +28,11 @@ def expandarray(array1, array2) :
 def animasi(array,xawal,yawal) :
     plt.clf()
     plt.scatter([i[0] for i in array],[i[1] for i in array])
+    plt.title("Kurva Bezier")
     plt.plot([i[0] for i in array],[i[1] for i in array], marker = 'o', label = 'kurva bezier')
     plt.plot(xawal, yawal, marker = 'o', label = 'titik kontrol')
     plt.legend()
-    plt.pause(2)
+    plt.pause(0.5)
 
 
 def Ngaris_BForce(algo):
@@ -72,6 +74,7 @@ def Ngaris_BForce(algo):
         y = []
         y.append(titikawal[0][1])
         iterasi = int(input("Masukkan iterasi: "))
+        mulai = time.time()
         iterasi = 2**iterasi - 1
         t = 1/iterasi
         while t < 1 :
@@ -79,9 +82,12 @@ def Ngaris_BForce(algo):
             x.append(titik[0])
             y.append(titik[1])
             t += 1/iterasi
+        akhir = time.time()
 
     if algo == '2':
+        total_iterasi_animasi = 0
         iterasi = int(input("Masukkan iterasi: "))
+        mulai = time.time()     
         for i in range(iterasi) :
             titikbezier = []
             titikdipakai = 0
@@ -107,16 +113,25 @@ def Ngaris_BForce(algo):
             for i in range(0, len(titikbantu), n) :
                 titikbezier.append(titikbantu[i])
             animasi(titikbezier,xawal,yawal)
+            total_iterasi_animasi += 1 
 
         x = []
         y = []
         for i in range(len(titikbezier)) :
             x.append(titikbezier[i][0])
             y.append(titikbezier[i][1])
+        akhir = time.time()
 
     plt.clf()
+    plt.title("Kurva Bezier")
     plt.plot(x,y, marker = 'o', label = 'kurva bezier')
     plt.scatter(x,y)
     plt.plot(xawal, yawal, marker = 'o', label = 'titik kontrol')
     plt.legend()
+    if algo == '2':
+        #Mengalami pengurangan karena ada galat ketika menampilkan animasi
+        runtime = akhir - mulai - (total_iterasi_animasi * 0.5)
+    else:
+        runtime = akhir - mulai
+    print("Waktu program berjalan: {:.2f} seconds".format(runtime))
     plt.show()
