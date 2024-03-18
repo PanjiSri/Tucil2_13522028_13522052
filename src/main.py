@@ -49,7 +49,7 @@ def main():
         kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr, titik[0], titik[1], titik[2], total_iterasi_animasi)
         selesai = time.time()
         # print(len(total_iterasi_animasi))
-        print("Waktu program berjalan: {:.2f} seconds".format(selesai- mulai - (len(total_iterasi_animasi) * 0.5)))
+        print("Waktu program berjalan: {:.2f} milliseconds".format((selesai- mulai - (len(total_iterasi_animasi) * 0.5)) * 1000))
         plt.show()
 
     elif algo == '2' or algo == '3':
