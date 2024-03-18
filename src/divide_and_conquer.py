@@ -8,7 +8,7 @@ def titik_tengah(titik_awal, titik_akhir):
     hasil.append(y_tengah)
     return hasil
 
-def kurva_bezier(titik_1, titik_2, titik_3, iterasi, arr, kontrol1, kontrol2, kontrol3):
+def kurva_bezier(titik_1, titik_2, titik_3, iterasi, arr, kontrol1, kontrol2, kontrol3, total_iterasi_animasi):
     if iterasi == 1:
         tengah_1 = titik_tengah(titik_1, titik_2)
         tengah_2 = titik_tengah(titik_2, titik_3)
@@ -28,6 +28,7 @@ def kurva_bezier(titik_1, titik_2, titik_3, iterasi, arr, kontrol1, kontrol2, ko
                 arr.append(titik_3)
         plt.clf()
         plot_kontrol(kontrol1, kontrol2, kontrol3)
+        total_iterasi_animasi.append(1)
         plot_kurva(arr)   
     else:
         tengah_1 = titik_tengah(titik_1, titik_2)
@@ -35,10 +36,10 @@ def kurva_bezier(titik_1, titik_2, titik_3, iterasi, arr, kontrol1, kontrol2, ko
         tengah_dari_tengah = titik_tengah(tengah_1,tengah_2)
 
         #ini buat bagian kiri
-        kurva_bezier(titik_1, tengah_1, tengah_dari_tengah, iterasi-1, arr, kontrol1, kontrol2, kontrol3)
+        kurva_bezier(titik_1, tengah_1, tengah_dari_tengah, iterasi-1, arr, kontrol1, kontrol2, kontrol3, total_iterasi_animasi)
 
         #ini buat bagian kanan
-        kurva_bezier(tengah_dari_tengah,tengah_2, titik_3, iterasi-1, arr, kontrol1, kontrol2, kontrol3)
+        kurva_bezier(tengah_dari_tengah,tengah_2, titik_3, iterasi-1, arr, kontrol1, kontrol2, kontrol3, total_iterasi_animasi)
 
 def plot_kurva(arr):
     titik_x = []

@@ -44,10 +44,12 @@ def main():
         titik = input_titik()
         iterasi = int(input("Masukkan jumlah iterasi: "))   
         arr = []
+        total_iterasi_animasi = []
         mulai = time.time()
-        kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr, titik[0], titik[1], titik[2])
+        kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr, titik[0], titik[1], titik[2], total_iterasi_animasi)
         selesai = time.time()
-        print("Waktu program berjalan: {:.2f} seconds".format(selesai-mulai))
+        # print(len(total_iterasi_animasi))
+        print("Waktu program berjalan: {:.2f} seconds".format(selesai- mulai - (len(total_iterasi_animasi) * 0.5)))
         plt.show()
 
     elif algo == '2' or algo == '3':
