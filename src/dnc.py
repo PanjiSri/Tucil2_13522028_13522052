@@ -136,8 +136,8 @@ def Ngaris_BForce(algo):
     plt.legend()
     if algo == '2':
         #Mengalami pengurangan karena ada galat ketika menampilkan animasi
-        runtime = akhir - mulai - (total_iterasi_animasi * 0.5)
+        runtime = (akhir - mulai - (total_iterasi_animasi * 0.5)) * 1000
     else:
-        runtime = akhir - mulai
-    print("Waktu program berjalan: {:.2f} seconds".format(runtime))
+        runtime = (akhir - mulai) * 1000
+    print("Waktu program berjalan: {:.2f} milliseconds".format(runtime))
     plt.show()
