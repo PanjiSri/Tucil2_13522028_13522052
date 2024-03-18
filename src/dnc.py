@@ -43,9 +43,10 @@ def Ngaris_BForce(algo):
     xawal = [] # X titik yang masuk di awal
     yawal = [] # Y titik yang masuk di awal
 
-    n = int(input("Masukkan banyak garis: "))
+    n = int(input("Masukkan banyak titik: "))
+    garis = n-1
 
-    for i in range(n+1) :
+    for i in range(n) :
         titik = []
         if i == 0 :
             titik.append(float(input("input x: ")))
@@ -54,7 +55,7 @@ def Ngaris_BForce(algo):
             yawal.append(titik[-1])
             titikawal.append(titik)
             titikbantu.append(titik)
-        elif i == n :
+        elif i == n-1 :
             titik.append(float(input("input x: ")))
             xawal.append(titik[-1])
             titik.append(float(input("input y: ")))
@@ -87,6 +88,7 @@ def Ngaris_BForce(algo):
     if algo == '2':
         total_iterasi_animasi = 0
         iterasi = int(input("Masukkan iterasi: "))
+        pakai_animasi = input("Ingin menggunakan animasi (Y/N): ")
         mulai = time.time()     
         for i in range(iterasi) :
             titikbezier = []
@@ -96,7 +98,7 @@ def Ngaris_BForce(algo):
             while (titikdipakai < len(titikbantutemp)-1) :
                 temp = []
                 awal = titikdipakai
-                titikdipakai += n
+                titikdipakai += garis
                 # print(titikbantutemp[awal:titikdipakai+1])
                 kumpulantitik = slicing(titikbantutemp,awal,titikdipakai+1)
                 kumpulantitik = list_midpoint(kumpulantitik)
@@ -110,10 +112,14 @@ def Ngaris_BForce(algo):
                 temp.append(titikbantutemp[titikdipakai])
                 titikbantu = expandarray(titikbantu,temp)
             titikbantu.insert(0,titikawal[0])
-            for i in range(0, len(titikbantu), n) :
-                titikbezier.append(titikbantu[i])
-            animasi(titikbezier,xawal,yawal)
-            total_iterasi_animasi += 1 
+            if pakai_animasi == 'Y' :
+                for i in range(0, len(titikbantu), garis) :
+                    titikbezier.append(titikbantu[i])
+                animasi(titikbezier,xawal,yawal)
+                total_iterasi_animasi += 1
+            else :
+                for i in range(0, len(titikbantu), garis) :
+                    titikbezier.append(titikbantu[i])
 
         x = []
         y = []
