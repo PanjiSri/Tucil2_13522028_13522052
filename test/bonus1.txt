@@ -1,7 +1,7 @@
-jumlah garis = 3
+jumlah titik = 4
 titik kontrol 1
-x = 10
-y = 0
+x = 0
+y = 10
 titik kontrol 2
 x = 8
 y = 0
@@ -11,4 +11,4 @@ y = 10
 titik kontrol 4
 x = 30
 y = 0
-iterasi = 4
+iterasi = 7

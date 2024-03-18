@@ -1,3 +1,4 @@
+jumlah titik = 3
 titik kontrol awal
 x = -10
 y = 0
@@ -7,4 +8,4 @@ y = -20
 titik kontrol akhir
 x = 10
 y = 0
-iterasi = 5
+iterasi = 10

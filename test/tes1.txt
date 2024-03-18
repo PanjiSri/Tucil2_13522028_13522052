@@ -1,4 +1,4 @@
-banyak garis = 2
+jumlah titik = 3
 titik kontrol awal
 x = 0
 y = 10
@@ -8,4 +8,4 @@ y = 0
 titik kontrol akhir
 x = 20
 y = 10
-iterasi = 4
+iterasi = 7
