@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import bruteforce
+import time
 
 def midpoint(x1,y1,x2,y2) :
     koordinat = []
@@ -27,10 +28,11 @@ def expandarray(array1, array2) :
 def animasi(array,xawal,yawal) :
     plt.clf()
     plt.scatter([i[0] for i in array],[i[1] for i in array])
+    plt.title("Kurva Bezier")
     plt.plot([i[0] for i in array],[i[1] for i in array], marker = 'o', label = 'kurva bezier')
     plt.plot(xawal, yawal, marker = 'o', label = 'titik kontrol')
     plt.legend()
-    plt.pause(2)
+    plt.pause(0.5)
 
 
 def Ngaris_BForce(algo):
@@ -73,6 +75,7 @@ def Ngaris_BForce(algo):
         y = []
         y.append(titikawal[0][1])
         iterasi = int(input("Masukkan iterasi: "))
+        mulai = time.time()
         iterasi = 2**iterasi - 1
         t = 1/iterasi
         while t < 1 :
@@ -80,9 +83,13 @@ def Ngaris_BForce(algo):
             x.append(titik[0])
             y.append(titik[1])
             t += 1/iterasi
+        akhir = time.time()
 
     if algo == '2':
+        total_iterasi_animasi = 0
         iterasi = int(input("Masukkan iterasi: "))
+        pakai_animasi = input("Ingin menggunakan animasi (Y/N): ")
+        mulai = time.time()     
         for i in range(iterasi) :
             titikbezier = []
             titikdipakai = 0
@@ -105,23 +112,32 @@ def Ngaris_BForce(algo):
                 temp.append(titikbantutemp[titikdipakai])
                 titikbantu = expandarray(titikbantu,temp)
             titikbantu.insert(0,titikawal[0])
-            for i in range(0, len(titikbantu), garis) :
-                titikbezier.append(titikbantu[i])
-            animasi(titikbezier,xawal,yawal)
+            if pakai_animasi == 'Y' :
+                for i in range(0, len(titikbantu), garis) :
+                    titikbezier.append(titikbantu[i])
+                animasi(titikbezier,xawal,yawal)
+                total_iterasi_animasi += 1
+            else :
+                for i in range(0, len(titikbantu), garis) :
+                    titikbezier.append(titikbantu[i])
 
         x = []
         y = []
-        x.append(titikawal[0][0])
-        y.append(titikawal[0][1])
         for i in range(len(titikbezier)) :
             x.append(titikbezier[i][0])
             y.append(titikbezier[i][1])
-        x.append(titikakhir[0][0])
-        y.append(titikakhir[0][1])
+        akhir = time.time()
 
     plt.clf()
-    plt.scatter(x,y)
+    plt.title("Kurva Bezier")
     plt.plot(x,y, marker = 'o', label = 'kurva bezier')
+    plt.scatter(x,y)
     plt.plot(xawal, yawal, marker = 'o', label = 'titik kontrol')
     plt.legend()
+    if algo == '2':
+        #Mengalami pengurangan karena ada galat ketika menampilkan animasi
+        runtime = akhir - mulai - (total_iterasi_animasi * 0.5)
+    else:
+        runtime = akhir - mulai
+    print("Waktu program berjalan: {:.2f} seconds".format(runtime))
     plt.show()

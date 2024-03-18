@@ -1,6 +1,11 @@
-import math
+def factorial (num) :
+    angka = 1
+    for i in range(1,num + 1) :
+        angka *= i
+    return angka
+
 def combination (leftnum, rightnum) :
-    return round(math.factorial(leftnum) / (math.factorial(rightnum) * math.factorial(leftnum-rightnum)))
+    return round(factorial(leftnum) / (factorial(rightnum) * factorial(leftnum-rightnum)))
 
 def bexierbruteforce(array, t) :
     # Array = banyak titik
