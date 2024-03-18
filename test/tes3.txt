@@ -1,0 +1,11 @@
+jumlah garis = 2
+titik kontrol awal
+x = -10
+y = 0
+titik kontrol antara
+x = 0
+y = 10
+titik kontrol akhir
+x = 10
+y = 0
+iterasi = 5

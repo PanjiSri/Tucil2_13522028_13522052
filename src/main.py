@@ -42,14 +42,19 @@ def main():
     print("")
     if algo == '1':
         titik = input_titik()
+        pakai_animasi = input("Ingin menggunakan animasi (Y/N)?")
         iterasi = int(input("Masukkan jumlah iterasi: "))   
         arr = []
         total_iterasi_animasi = []
         mulai = time.time()
-        kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr, titik[0], titik[1], titik[2], total_iterasi_animasi)
+        kurva_bezier(titik[0], titik[1], titik[2], iterasi, arr, titik[0], titik[1], titik[2], total_iterasi_animasi, pakai_animasi)
         selesai = time.time()
-        # print(len(total_iterasi_animasi))
-        print("Waktu program berjalan: {:.2f} milliseconds".format((selesai- mulai - (len(total_iterasi_animasi) * 0.5)) * 1000))
+        if pakai_animasi == 'Y':
+            print("Waktu program berjalan: {:.2f} milliseconds".format((selesai- mulai - (len(total_iterasi_animasi) * 0.5)) * 1000))
+        else:
+            plot_kontrol(titik[0], titik[1], titik[2])
+            plot_kurva_no_animasi(arr)
+            print("Waktu program berjalan: {:.2f} milliseconds".format((selesai- mulai) * 1000))
         plt.show()
 
     elif algo == '2' or algo == '3':

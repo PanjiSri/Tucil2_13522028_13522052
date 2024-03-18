@@ -1,0 +1,20 @@
+jumlah garis = 5
+titik kontrol 1
+x = 10
+y = 0
+titik kontrol 2
+x = 8
+y = 0
+titik kontrol 3
+x = 20
+y = 10
+titik kontrol 4
+x = 30
+y = 0
+titik kontrol 5
+x = 35
+y = 10
+titik kontrol 6
+x = 40
+y = 0
+iterasi = 4
