@@ -17,4 +17,4 @@ y = 10
 titik kontrol 6
 x = 40
 y = 0
-iterasi = 7
+iterasi = 10

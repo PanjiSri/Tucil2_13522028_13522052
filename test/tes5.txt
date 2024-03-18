@@ -8,4 +8,4 @@ y = 0
 titik kontrol akhir
 x = 10
 y = -10
-iterasi = 10
+iterasi = 18
