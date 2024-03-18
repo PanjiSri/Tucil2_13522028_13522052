@@ -41,9 +41,10 @@ def Ngaris_BForce(algo):
     xawal = [] # X titik yang masuk di awal
     yawal = [] # Y titik yang masuk di awal
 
-    n = int(input("Masukkan banyak garis: "))
+    n = int(input("Masukkan banyak titik: "))
+    garis = n-1
 
-    for i in range(n+1) :
+    for i in range(n) :
         titik = []
         if i == 0 :
             titik.append(float(input("input x: ")))
@@ -52,7 +53,7 @@ def Ngaris_BForce(algo):
             yawal.append(titik[-1])
             titikawal.append(titik)
             titikbantu.append(titik)
-        elif i == n :
+        elif i == n-1 :
             titik.append(float(input("input x: ")))
             xawal.append(titik[-1])
             titik.append(float(input("input y: ")))
@@ -90,7 +91,7 @@ def Ngaris_BForce(algo):
             while (titikdipakai < len(titikbantutemp)-1) :
                 temp = []
                 awal = titikdipakai
-                titikdipakai += n
+                titikdipakai += garis
                 # print(titikbantutemp[awal:titikdipakai+1])
                 kumpulantitik = slicing(titikbantutemp,awal,titikdipakai+1)
                 kumpulantitik = list_midpoint(kumpulantitik)
@@ -104,19 +105,23 @@ def Ngaris_BForce(algo):
                 temp.append(titikbantutemp[titikdipakai])
                 titikbantu = expandarray(titikbantu,temp)
             titikbantu.insert(0,titikawal[0])
-            for i in range(0, len(titikbantu), n) :
+            for i in range(0, len(titikbantu), garis) :
                 titikbezier.append(titikbantu[i])
             animasi(titikbezier,xawal,yawal)
 
         x = []
         y = []
+        x.append(titikawal[0][0])
+        y.append(titikawal[0][1])
         for i in range(len(titikbezier)) :
             x.append(titikbezier[i][0])
             y.append(titikbezier[i][1])
+        x.append(titikakhir[0][0])
+        y.append(titikakhir[0][1])
 
     plt.clf()
-    plt.plot(x,y, marker = 'o', label = 'kurva bezier')
     plt.scatter(x,y)
+    plt.plot(x,y, marker = 'o', label = 'kurva bezier')
     plt.plot(xawal, yawal, marker = 'o', label = 'titik kontrol')
     plt.legend()
     plt.show()
