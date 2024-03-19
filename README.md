@@ -36,6 +36,7 @@ sehingga dapat menghasilkan desain yang presisi dan sesuai dengan kebutuhan
     │   ├── bonus1.txt
     │   ├── bonus2.txt
     │   ├── bonus3.txt
+    │   ├── bonus4.txt
     │   ├── tes1.txt
     │   ├── tes2.txt
     │   ├── tes3.txt
